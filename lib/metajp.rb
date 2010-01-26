@@ -1,8 +1,11 @@
+require 'rubygems'
 require File.dirname(__FILE__) + '/metajp/shared/super_crud/controller.rb'
 require File.dirname(__FILE__) + '/metajp/shared/super_crud/model.rb'
 require File.dirname(__FILE__) + '/metajp/shared/super_crud/helper.rb'
 
 module Metajp
+  
+  VERSION = '0.1.0'
   
   #----------------------------------------------------------------
   # extensions for the controller
@@ -19,7 +22,17 @@ module Metajp
       end
     end
   end
+  
+  def self.get_template_path
+    Gem.path.each do |path|
+      tmp_path = "#{path}/gems/metajp-#{VERSION}" 
+      return "#{tmp_path}/lib/metajp/templates" if File.exists?(tmp_path) 
+    end
+    raise "Cannot find gem 'metajp-#{VERSION}' on your system" unless @template
+  end
     
 end
 
-ActionController::Base.send :include, Metajp::Controller
+if defined?(Rails) && defined?(ActionController)
+  ActionController::Base.send :include, Metajp::Controller
+end

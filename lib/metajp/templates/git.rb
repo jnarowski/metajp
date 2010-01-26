@@ -13,5 +13,6 @@ if yes?("Do you want to add this project to git?")
   run "cp config/database.yml config/example_database.yml"
   
   git :rm => "public/index.html"
-  git :add => ".", :commit => "-m 'initial commit'"
+  git :add => "."
+  git :commit => "-m 'initial commit'"
 end
