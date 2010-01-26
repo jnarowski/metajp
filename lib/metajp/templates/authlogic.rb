@@ -1,4 +1,19 @@
 if yes?("Do you want to add authlogic to this project?")
+  gem 'authlogic'
+  
+  generate(:session, "user_session")
+  generate(:controller, "user_sessions")
+  
+  generate(:controller, "users")
+  run "cp #{@template}/users_controller.rb app/controllers/users_controller.rb"
+  
+  route "map.login 'login', :controller => 'user_sessions', :action => 'new'"
+  route "map.login 'logout', :controller => 'user_sessions', :action => 'destroy'" 
+  route "map.resources :user_sessions"
+  route "map.resources :users"
+  
+  # if yes?("Do you want to add user activation and password reset?")
+  # end
 end
 
 # gem 'authlogic'

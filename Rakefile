@@ -5,13 +5,21 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "metajp"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Shared functionality for rails apps}
+    gem.description = %Q{These tools help setup and install plugins}
     gem.email = "jnarowski@gmail.com"
     gem.homepage = "http://github.com/jnarowski/metajp"
     gem.authors = ["John Paul Narowski"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.files = [
+      ".document",
+       ".gitignore",
+       "LICENSE",
+       "README.rdoc",
+       "Rakefile",
+       Dir["{test,lib}/**/*"],
+       "test/helper.rb",
+       "test/test_metastrano.rb"
+    ]
   end
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
@@ -38,7 +46,6 @@ rescue LoadError
 end
 
 task :test => :check_dependencies
-
 task :default => :test
 
 require 'rake/rdoctask'
