@@ -2,7 +2,7 @@ module Metajp
   module Shared    
     module SuperCrud
       module Controller 
-        
+
         #----------------------------------------------------------------
         # controller functionality
         # -- you can override or extend if you want

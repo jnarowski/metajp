@@ -1,15 +1,25 @@
+require File.dirname(__FILE__) + '/metajp/shared/super_crud/controller.rb'
+require File.dirname(__FILE__) + '/metajp/shared/super_crud/model.rb'
+require File.dirname(__FILE__) + '/metajp/shared/super_crud/helper.rb'
+
 module Metajp
   
-  def self.include_super_controller
-    ::Shared::SuperCrud::Controller
-  end
+  #----------------------------------------------------------------
+  # extensions for the controller
+  #----------------------------------------------------------------
 
-  def self.include_super_helper
-    ::Shared::SuperCrud::Controller
-  end
-
-  def self.include_super_model
-    ::Shared::SuperCrud::Controller
-  end
+  module Controller    
+    def self.included(base)  
+      base.send :extend, ClassMethods 
+    end  
   
+    module ClassMethods
+      def super_controller 
+        send :include, Metajp::Shared::SuperCrud::Controller 
+      end
+    end
+  end
+    
 end
+
+ActionController::Base.send :include, Metajp::Controller
