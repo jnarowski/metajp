@@ -9,7 +9,7 @@ module Metajp
 
         def filter_results
           out = ""
-          out += "<div id=\"filter-results-count\" class=\"float-right\">#{@filter_count} found #{link_to(icon('cross'), {:controller => controller_name})}</div>" if @filter_count
+          out += "<div id=\"filter-results-count\" class=\"float-right\">#{@filter_count} found #{link_to(super_icon('cross'), {:controller => controller_name})}</div>" if @filter_count
           out += "<div id=\"filter-results\">#{@filter_text}</div>#{}" if @filter_text
           out
         end
