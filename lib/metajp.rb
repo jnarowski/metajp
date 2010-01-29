@@ -1,7 +1,11 @@
 require 'rubygems'
+# super_crud
 require File.dirname(__FILE__) + '/metajp/shared/super_crud/controller.rb'
 require File.dirname(__FILE__) + '/metajp/shared/super_crud/model.rb'
 require File.dirname(__FILE__) + '/metajp/shared/super_crud/helper.rb'
+
+# acts_as_invitable
+require File.dirname(__FILE__) + '/metajp/shared/acts_as_invitable/model.rb'
 
 module Metajp
   
@@ -35,4 +39,7 @@ end
 
 if defined?(Rails) && defined?(ActionController)
   ActionController::Base.send :include, Metajp::Controller
+  ActiveRecord::Base.send(:include, Metajp::ActsAsInvitable)
 end
+
+
