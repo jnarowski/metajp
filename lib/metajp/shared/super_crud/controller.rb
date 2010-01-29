@@ -67,6 +67,12 @@ module Metajp
         # helper functions
         #----------------------------------------------------------------
 
+        # determines if the user is an admin
+        def is_admin?
+          flash[:notice] = 'You do not have access to this area.'
+          redirect_to '/' unless current_user.admin?
+        end
+        
         # used to set the path in the #_update and #_create methods
         def set_path(object, path)
           path.blank? ? "#{@_path}/#{object.id}" : path

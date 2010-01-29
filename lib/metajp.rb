@@ -1,4 +1,5 @@
 require 'rubygems'
+
 # super_crud
 require File.dirname(__FILE__) + '/metajp/shared/super_crud/controller.rb'
 require File.dirname(__FILE__) + '/metajp/shared/super_crud/model.rb'
@@ -23,6 +24,8 @@ module Metajp
     module ClassMethods
       def super_controller 
         send :include, Metajp::Shared::SuperCrud::Controller 
+        before_filter :require_user
+        before_filter :is_admin?
       end
     end
   end
